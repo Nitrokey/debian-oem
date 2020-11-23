@@ -1,4 +1,4 @@
-apt-get update
-apt-get install simple-cdd
+apt-get -y update
+apt-get -y install simple-cdd
 build-simple-cdd --force-root --profiles nk --build-profiles nk --auto-profiles nk --force-preseed
 
