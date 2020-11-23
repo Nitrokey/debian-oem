@@ -7,14 +7,11 @@ scripts.
 To create the ISO image run:
 ```bash
 
-# this will set up a simple debian container
+# this will set up a simple debian container and bring you in
 make
 
-# /work will be mapped to the current directory
-cd /work
-
-# run the iso build process
-sh build.sh
+# run the iso building process
+make build
 
 # leave the container
 exit

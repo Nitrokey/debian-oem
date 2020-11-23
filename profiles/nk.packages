@@ -1,3 +1,5 @@
 less
 vim
 nitrokey-app
+libgnutls30
+libgnutls-openssl27
