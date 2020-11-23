@@ -1,0 +1,158 @@
+
+# this example pre-seeding file was largely based on
+# http://d-i.alioth.debian.org/manual/example-preseed.txt
+
+# for more explanation of the options, see:
+# http://d-i.alioth.debian.org/manual/en.mips/apbs04.html
+
+###### Package selection.
+
+# don't install any tasks
+#tasksel   tasksel/first multiselect 
+tasksel   tasksel/first multiselect Desktop environment
+#tasksel  tasksel/first multiselect Web server, Mail server, DNS server
+
+
+###### Time zone setup.
+
+# Controls whether or not the hardware clock is set to UTC.
+d-i clock-setup/utc boolean true
+
+# Many countries have only one time zone. If you told the installer you're
+# in one of those countries, you can choose its standard time zone via this
+# question#.
+base-config tzconfig/choose_country_zone_single boolean true
+#d-i     time/zone       select  US/Pacific
+
+
+### keyboard configuration
+
+# don't mess with the keymap
+console-common  console-data/keymap/policy      select  Don't touch keymap
+console-data    console-data/keymap/policy      select  Don't touch keymap
+
+# keyboard layouts
+#console-data console-data/keymap/qwerty/layout select US american
+#console-data console-data/keymap/family select qwerty
+#console-common console-data/keymap/family select qwerty
+
+
+###### Account setup.
+
+# To preseed the root password, you have to put it in the clear in this
+# file. That is not a very good idea, use caution!
+passwd   passwd/root-password    password 
+passwd   passwd/root-password-again  password 
+
+# If you want to skip creation of a normal user account.
+#passwd   passwd/make-user    boolean false
+# Alternatively, you can preseed the user's name and login.
+#passwd   passwd/user-fullname    string Debian User
+#passwd   passwd/username     string debian
+# And their password, but use caution!
+#passwd   passwd/user-password    password insecure
+#passwd   passwd/user-password-again  password insecure
+
+
+#### Network configuration.
+
+# netcfg will choose an interface that has link if possible. This makes it
+# skip displaying a list if there is more than one interface.
+d-i netcfg/choose_interface select auto
+
+# Note that any hostname and domain names assigned from dhcp take
+# precidence over values set here. However, setting the values still
+# prevents the questions from being shown even if values come from dhcp.
+d-i netcfg/get_hostname string unassigned
+d-i netcfg/get_domain string unassigned
+# to set the domain to empty:
+#d-i netcfg/get_domain string 
+
+# Disable that annoying WEP key dialog.
+d-i netcfg/wireless_wep string 
+
+
+### Partitioning.
+
+d-i partman-auto/method string crypto
+d-i partman-lvm/device_remove_lvm boolean true
+d-i partman-lvm/confirm boolean true
+d-i partman-auto-lvm/guided_size string max
+d-i partman-auto-lvm/new_vg_name string crypt
+d-i partman-auto/disk string /dev/sda
+d-i partman-auto/choose_recipe select atomic
+d-i partman-md/device_remove_md boolean true
+
+d-i partman-auto-crypto/erase_disks boolean false
+
+d-i partman-basicfilesystems/no_mount_point boolean false
+d-i partman-partitioning/confirm_write_new_label boolean true
+d-i partman/choose_partition select finish
+d-i partman/confirm boolean true
+d-i partman/confirm_nooverwrite boolean true
+
+
+#### Boot loader installation.
+
+# This is fairly safe to set, it makes grub install automatically to the MBR
+# if no other operating system is detected on the machine.
+d-i grub-installer/only_debian  boolean true
+# This one makes grub-installer install to the MBR if if finds some other OS
+# too, which is less safe as it might not be able to boot that other OS.
+d-i grub-installer/with_other_os  boolean true
+
+d-i grub-installer/choose_bootdev string Enter device manually
+d-i grub-installer/bootdev string /dev/sda
+###### Apt setup.
+
+# automatically set the CD as the installation media.
+#base-config apt-setup/uri_type  select http
+#base-config apt-setup/uri_type  select cdrom
+# only scan the first CD by default
+#d-i apt-setup/cdrom/set-first  boolean false
+# don't ask to use additional mirrors
+#base-config apt-setup/another boolean false
+# Use a network mirror?
+# apt-mirror-setup        apt-setup/use_mirror    boolean false
+
+# Select individual apt repositories
+d-i apt-setup/services-select multiselect security, updates, backports
+# Disable extra apt repositories
+#d-i apt-setup/services-select multiselect 
+
+# You can choose to install non-free and contrib software.
+d-i apt-setup/non-free  boolean true
+d-i apt-setup/contrib boolean true
+
+
+###### Mailer configuration.
+
+# During a normal install, exim asks only two questions. Here's how to
+# avoid even those. More complicated preseeding is possible.
+exim4-config  exim4/dc_eximconfig_configtype  select no configuration at this time
+# It's a good idea to set this to whatever user account you choose to
+# create. Leaving the value blank results in postmaster mail going to
+# /var/mail/mail.
+exim4-config  exim4/dc_postmaster   string 
+
+
+### skip some annoying installation status notes
+
+# Avoid that last message about the install being complete.
+d-i finish-install/reboot_in_progress note
+# Avoid the introductory message.
+base-config base-config/intro note 
+# Avoid the final message.
+base-config base-config/login note 
+
+#d-i     popularity-contest/participate  boolean false
+
+
+### simple-cdd commands
+
+# you may add to the following commands by including a ";" followed by your
+# shell commands.
+
+# loads the simple-cdd-profiles udeb to which asks for which profiles to use,
+# load the debconf preseeding and queue packages for installation.
+d-i preseed/early_command string anna-install simple-cdd-profiles
