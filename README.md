@@ -21,7 +21,9 @@ exit
 ```
 
 This will create an iso file inside `images/` which can be used for installation.
-On boot, make sure to select "Advanced Options" -> "(Graphical) Automated Install".
+
+**On boot, make sure to select "Advanced Options" -> "(Graphical) Automated Install".**
+
 During Installation only the following inputs are expected:
 * Language / Country / Keymap
 * User Account (Full Name, Account Name, Password)
