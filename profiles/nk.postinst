@@ -16,3 +16,7 @@ grep favorite-apps /usr/share/glib-2.0/schemas/10_ubuntu-settings.gschema.overri
 
 dconf update
 
+apt-get -y update
+apt-get -y install task-gnome-desktop
+
+

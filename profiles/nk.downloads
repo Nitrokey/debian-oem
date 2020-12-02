@@ -35,3 +35,8 @@ isolinux
 
 # necessary if user chooses to not set a root password.
 sudo
+
+tasksel
+tasksel-data
+debian-installer
+
