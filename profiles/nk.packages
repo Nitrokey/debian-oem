@@ -1,5 +1,4 @@
-less
-vim
+
 nitrokey-app
 libgnutls30
 libgnutls-openssl27
@@ -12,6 +11,10 @@ gedit
 sddm
 gnome-session
 gnome-shell
+
+## contrib to avoid error
+#iucode-tool
+
 
 #task-gnome-desktop
 
