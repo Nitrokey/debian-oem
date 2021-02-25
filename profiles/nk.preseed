@@ -102,7 +102,7 @@ d-i grub-installer/only_debian  boolean true
 d-i grub-installer/with_other_os  boolean true
 
 d-i grub-installer/choose_bootdev string Enter device manually
-d-i grub-installer/bootdev string /dev/sda
+#d-i grub-installer/bootdev string /dev/nvme0n1
 ###### Apt setup.
 
 # automatically set the CD as the installation media.
