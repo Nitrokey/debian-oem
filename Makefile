@@ -14,7 +14,6 @@ image:
 	touch $@
 
 clean:
-	sudo chown -R $(shell id -u).$(shell id -g) .
 	rm -rf tmp images image
 
 

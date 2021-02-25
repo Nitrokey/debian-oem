@@ -7,6 +7,8 @@ scripts.
 To create the ISO image run:
 ```bash
 
+make clean
+
 # this will set up a simple debian container and bring you in
 make
 
