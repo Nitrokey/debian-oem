@@ -14,6 +14,7 @@ image:
 	docker build -t nk/debian-image .
 
 clean:
+	sudo chown -R $(shell id -u).$(shell id -g) .
 	rm -rf tmp images
 
 

@@ -10,11 +10,6 @@ To create the ISO image run:
 # this will set up a simple debian container and bring you in
 make
 
-# run the iso building process
-make build
-
-# leave the container
-exit
 ```
 
 This will create an iso file inside `images/` which can be used for installation.
