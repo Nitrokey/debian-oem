@@ -1,5 +1,8 @@
-all: image 
-	docker run -it --mount type=bind,source=$(shell pwd),target=/work nk/debian-image 
+all: image
+	-docker stop deb
+	-docker rm deb
+	docker run -itd --name deb --mount type=bind,source=$(shell pwd),target=/work nk/debian-image
+	docker exec -it deb make build
 
 build:
 	build-simple-cdd --conf nk.conf --force-root --force-preseed
