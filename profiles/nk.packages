@@ -12,6 +12,7 @@ sddm
 gnome-session
 gnome-shell
 
+
 ## contrib to avoid error
 #iucode-tool
 
@@ -29,3 +30,5 @@ gnome-shell
 #thunar
 #xorg-driver-input
 #gnome
+
+
