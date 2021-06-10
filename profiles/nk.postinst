@@ -20,6 +20,7 @@ apt-get -y update
 apt-get -y install linux-image-5.10.0-0.bpo.3-amd64 \
 	linux-headers-5.10.0-0.bpo.3-amd64 \
 	firmware-realtek \
+	firmware-atheros \
 	task-gnome-desktop
 
 
