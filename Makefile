@@ -1,6 +1,6 @@
 myperms=$(shell id -u).$(shell id -g)
 
-all: clean clean
+all: clean image
 	-docker stop deb
 	-docker rm deb
 	docker run -itd --name deb --mount type=bind,source=$(shell pwd),target=/work nk/debian-image
