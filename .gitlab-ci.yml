@@ -29,7 +29,7 @@ oem-build:
   script:
     - make ci
     - mkdir -p artifacts
-    - cp *nitrokey*.iso artifacts/
+    - cp *nitropc*.iso artifacts/
   after_script:
     - wget $icon_server/checkmark/$CI_COMMIT_REF_NAME/$CI_COMMIT_SHA/$CI_JOB_NAME/$CI_JOB_STATUS/${CI_JOB_URL#*/*/*/}
   artifacts:
