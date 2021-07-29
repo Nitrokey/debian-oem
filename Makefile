@@ -1,4 +1,5 @@
 myperms=$(shell id -u).$(shell id -g)
+iso_name=`cat ./ISO_NAME`
 
 all: clean clean
 	-docker stop deb
@@ -12,8 +13,8 @@ ci: image
 
 build:
 	build-simple-cdd --conf nk.conf --force-root --force-preseed
-	cp images/debian-10-amd64-CD-1.iso nitrokey-debian-oem.iso
-	@echo "image: ./nitrokey-debian-oem.iso"
+	cp images/debian-10-amd64-CD-1.iso $(iso_name)
+	@echo "image: $(iso_name)"
 
 image:
 	docker build -t nk/debian-image .
