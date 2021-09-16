@@ -17,7 +17,7 @@ make build
 exit
 ```
 
-This will create an iso file inside `images/` which can be used for installation.
+This will create an iso file inside `images/` which can be used for installation (or [download](https://www.nitrokey.com/files/ci/nitropad/debian-oem/) the image).
 
 **On boot, make sure to select "Advanced Options" -> "(Graphical) Automated Install".**
 
