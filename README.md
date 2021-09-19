@@ -26,3 +26,6 @@ During Installation only the following inputs are expected:
 * User Account (Full Name, Account Name, Password)
 * LUKS Disk Encryption Password
 
+### Packages needed (if building w/o docker)
+
+* `simple-cdd` `make` `tasksel`
