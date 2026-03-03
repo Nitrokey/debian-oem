@@ -1,3 +1,6 @@
+**Do not use this repository anymore - please refer to [the documentation](https://docs.nitrokey.com/nitropad-nitropc/os-reinstallation) on how to properly re-install the OS on a Nitropad/NitroPC**
+
+
 # Debian Nitrokey Automated Installation ISO
 
 As of now there is no proper OEM installation for Debian. Therefore
